@@ -1,0 +1,5 @@
+.idea
+*.log
+old
+local
+node_modules

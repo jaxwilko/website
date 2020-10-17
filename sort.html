@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Jack's Textual Sorting Tool</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="/dist/app.css" type="text/css">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+        <link rel="manifest" href="images/favicons/site.webmanifest">
+        <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#1A2026">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            body {
+                background: #1A2026;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Jack's Textual Sorting Tool</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 my-3">
+                    <button class="btn btn-success mr-1" data-sort="alpha">Sort Alpha</button>
+                    <button class="btn btn-warning mr-1" data-sort="alphaDesc">Sort Desc Alpha</button>
+                    <button class="btn btn-danger" data-sort="random">Sort Random</button>
+                    <button class="btn btn-info" data-sort="removeDups">Remove Duplicates</button>
+                </div>
+                <div class="col-12">
+                    <label for="input" class="d-none">Text Input</label>
+                    <textarea id="input" class="form-control" rows="20"></textarea>
+                </div>
+            </div>
+        </div>
+        <script>
+            let sorting = {
+                alpha: function (a, b) {
+                    return a.localeCompare(b);
+                },
+                alphaDesc: function (a, b) {
+                    return b.localeCompare(a);
+                },
+                random: function () {
+                    return 0.5 - Math.random();
+                }
+            };
+
+            function removeDups(names) {
+                let unique = {};
+                names.forEach(function(i) {
+                    if(!unique[i]) {
+                        unique[i] = true;
+                    }
+                });
+                return Object.keys(unique);
+            }
+
+            let input = document.querySelector("#input"), str, arr, sort;
+            document.querySelectorAll("button.btn[data-sort]").forEach(function (btn) {
+                btn.addEventListener("click", function (e) {
+                    str = input.value;
+                    arr = str.split("\n");
+                    sort = btn.getAttribute("data-sort");
+                    if (sort === "removeDups") {
+                        arr = removeDups(arr);
+                    } else {
+                        arr.sort(sorting[btn.getAttribute("data-sort")]);
+                    }
+                    input.value = arr.join("\n");
+                })
+            })
+        </script>
+    </body>
+</html>

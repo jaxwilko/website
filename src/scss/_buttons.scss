@@ -1,0 +1,72 @@
+.fab {
+    padding: 18px;
+    font-size: 32px;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px 3px;
+    box-shadow: 0px 3px 4px 0px #a9a9a9;
+}
+
+.fab:hover {
+    filter: brightness(0.8);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0px 3px 5px 0px #a9a9a9;
+}
+
+.fab:hover:after {
+    filter: brightness(1);
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: #fff;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: #fff;
+}
+
+.fa-telegram-plane {
+    background: #0088cc;
+    color: #fff;
+}
+
+.fa-linkedin {
+    background: #007bb5;
+    color: #fff;
+}
+
+.fa-youtube {
+    background: #bb0000;
+    color: #fff;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: #fff;
+}
+
+.fa-pinterest {
+    background: #cb2027;
+    color: #fff;
+}
+
+.fa-reddit {
+    background: #ff5700;
+    color: #fff;
+}
+
+.fa-stack-overflow {
+    background: #ffac44;
+    color: #fff;
+}
+
+.fa-github {
+    background: #211F1F;
+    color: #fff;
+}
