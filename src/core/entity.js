@@ -9,6 +9,49 @@ export default class Entity
         this.random = new Random();
     }
 
+    collision(entity, amount) {
+        if (typeof entity.vector !== "undefined") {
+            entity = entity.vector;
+        }
+
+        if (entity.x === null || entity.y === null) {
+            return false;
+        }
+
+        let self = {radius: this.size / 2, x: this.vector.x, y: this.vector.y},
+            dx = self.x - entity.x,
+            dy = self.y - entity.y,
+            distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < self.radius + entity.radius) {
+            if (entity.x > self.x) {
+                this.velocity.x = -amount;
+            }
+            if (entity.x < self.x) {
+                this.velocity.x = amount;
+            }
+            if (entity.y > self.y) {
+                this.velocity.y = -amount;
+            }
+            if (entity.y < self.y) {
+                this.velocity.y = amount;
+            }
+        }
+    }
+
+    inRange(entity, range) {
+        if (entity.vector.x === null || entity.vector.y === null) {
+            return false;
+        }
+
+        let self = {radius: range, x: this.vector.x, y: this.vector.y},
+            dx = self.x - entity.vector.x,
+            dy = self.y - entity.vector.y,
+            distance = Math.sqrt(dx * dx + dy * dy);
+
+        return distance < self.radius + entity.size;
+    }
+
     updateVector(borders, vector) {
         if (this.vector[vector] >= borders[vector]) {
             this.vector[vector] = borders[vector];
