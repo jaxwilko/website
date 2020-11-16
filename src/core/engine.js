@@ -56,7 +56,8 @@ export default class Engine
                 continue;
             }
             this.canvas.renderEntity(this.entities[i], {
-                mouse: this.mouse
+                mouse: this.mouse,
+                entities: this.entities
             });
         }
         //
