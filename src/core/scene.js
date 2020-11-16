@@ -11,10 +11,13 @@ export default class Scene
     }
 
     getEntities(engine) {
-        let entities = [];
+        let entities = [], spawn;
+
+        console.log();
 
         if (this.random.chance()) {
-            for (let i = 0; i < 90; i++) {
+            spawn = engine.canvas.getWidth() > 576 ? 90 : 40;
+            for (let i = 0; i < spawn; i++) {
                 entities.push(
                     new Cube(
                         new Vector(this.random.number(0, engine.canvas.getWidth()), this.random.number(0, engine.canvas.getHeight())),
@@ -25,7 +28,8 @@ export default class Scene
                 );
             }
         } else {
-            for (let i = 0; i < 170; i++) {
+            spawn = engine.canvas.getWidth() > 576 ? 170 : 40;
+            for (let i = 0; i < spawn; i++) {
                 entities.push(
                     new Dot(
                         new Vector(this.random.number(0, engine.canvas.getWidth()), this.random.number(0, engine.canvas.getHeight())),
