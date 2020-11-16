@@ -72,37 +72,11 @@ export default class Cube extends Entity
         });
     }
 
-    collision(mouse) {
-        if (mouse.x === null || mouse.y === null) {
-            return false;
-        }
-
-        let cube = {radius: this.size / 2, x: this.vector.x, y: this.vector.y},
-            dx = cube.x - mouse.x,
-            dy = cube.y - mouse.y,
-            distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < cube.radius + mouse.radius) {
-            if (mouse.x > cube.x) {
-                this.velocity.x = -15;
-            }
-            if (mouse.x < cube.x) {
-                this.velocity.x = 15;
-            }
-            if (mouse.y > cube.y) {
-                this.velocity.y = -15;
-            }
-            if (mouse.y < cube.y) {
-                this.velocity.y = 15;
-            }
-        }
-    }
-
     render(canvas, options) {
         const _this = this;
         // this.rotate(Math.PI / 4, Math.atan(Math.sqrt(2)));
         if (options.mouse) {
-            this.collision(options.mouse);
+            this.collision(options.mouse, 15);
         }
 
         this.tick({
