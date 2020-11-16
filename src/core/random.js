@@ -32,4 +32,8 @@ export default class Random
     colour() {
         return this.colours[Math.floor(Math.random() * this.colours.length)];
     }
+
+    chance() {
+        return Math.random() < 0.5;
+    }
 }
